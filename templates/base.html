@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}静态HTML页面{% endblock %}</title>
+  <style>
+    /* 样式表可以在这里添加 */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2; /* 浅灰色背景 */
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    main {
+      margin: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>{% block header_title %}页面标题{% endblock %}</h1>
+    <div>
+      <a href="#">a</a>
+      <a href="#">b</a>
+      <a href="#">c</a>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <!-- 在这里添加页脚的注释 -->
+    &copy; 2023 静态HTML页面. 版权所有. 当前时间: <span id="current-time"></span>
+  </footer>
+
+  <script>
+    // 获取当前时间
+    function getCurrentTime() {
+      var date = new Date();
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var seconds = date.getSeconds();
+      return hours + ":" + minutes + ":" + seconds;
+    }
+
+    // 更新页面上的当前时间
+    function updateCurrentTime() {
+      var currentTimeElement = document.getElementById("current-time");
+      if (currentTimeElement) {
+        currentTimeElement.textContent = getCurrentTime();
+      }
+    }
+
+    // 每秒钟更新一次当前时间
+    setInterval(updateCurrentTime, 1000);
+  </script>
+</body>
+</html>

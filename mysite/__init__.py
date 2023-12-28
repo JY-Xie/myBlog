@@ -22,15 +22,14 @@ def create_app(test_config=None):
                                              autoflush=False,
                                              bind=engine))
 
-    @app.route("/index")
-    def hello():
-        return "hello, world!"
-
-
-
     from .photo import photos_show
     app.register_blueprint(photos_show.bp)
 
+    from .index import index_page
+    app.register_blueprint(index_page.bp)
+
+    from .auth import auth
+    app.register_blueprint(auth.bp)
 
     # from . import db
     # db.init_app(app)

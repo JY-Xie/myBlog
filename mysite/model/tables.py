@@ -15,7 +15,7 @@ Base = declarative_base()
 class Admin(Base):
     __tablename__ = "admin_account"
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    name: Mapped[str] = mapped_column(String(30))
+    name: Mapped[str] = mapped_column(String(30), unique=True)
     password: Mapped[str] = mapped_column(String())
 
     def __repr__(self) -> str:

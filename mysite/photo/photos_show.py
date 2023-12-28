@@ -13,30 +13,30 @@ db_session = scoped_session(sessionmaker(autocommit=False,
 
 @bp.route('/photos')
 def show_photos():
-    spongebob = Photo(
-        photo_path="photos/1(1).jpg",
-        photo_time=datetime.datetime.now(),
-        photo_location="chengdu2",
-        photo_sentence="testin1111111g"
-    )
-    db_session.add(spongebob)
-    db_session.commit()
+    page = int(request.args.get('page', 1))
+    per_page = 10
+
+
+    # spongebob = Photo(
+    #     photo_path="photos/1(1).jpg",
+    #     photo_time=datetime.datetime.now(),
+    #     photo_location="chengdu2",
+    #     photo_sentence="testin1111111g"
+    # )
+    # db_session.add(spongebob)
+    # db_session.commit()
 
     db_list = db_session.query(Photo).all()
-    photos_urls = [
-       i.photo_path for i in db_list
-    ]
-    photos_times = [
-        i.photo_time for i in db_list
-    ]
-    photos_locations = [
-        i.photo_location for i in db_list
-    ]
-    photos_sentences = [
-        i.photo_sentence for i in db_list
-    ]
+    total_length = len(db_list)
+    total_pages = len(db_list) // per_page + 1
+    start_index = (page - 1) * per_page
+    end_index = start_index + per_page
+    current_page_content = db_list[start_index:end_index]
 
     return render_template(
         './photo/photos.html',
-        photos_list=db_list
+        photos_list=current_page_content,
+        page=page,
+        total_pages=total_pages,
+        total_length=total_length
     )

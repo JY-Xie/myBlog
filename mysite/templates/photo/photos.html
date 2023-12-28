@@ -1,5 +1,5 @@
 {% extends './index/parent_template.html' %}
-{% block title %}blogs.{% endblock %}
+{% block title %}Photos.{% endblock %}
 {% block content %}
 
 
@@ -9,12 +9,32 @@ HELLO
 
 <div>
 {% for photos_url in photos_list %}
-    <img src="{{ url_for('static', filename=photos_url.photo_path) }}" class="img-fluid" alt="Image">
-    <div>{{ photos_url.photo_time }}</div>
-    <div>{{ photos_url.photo_location }}</div>
-    <div>{{ photos_url.photo_sentence }}</div>
+
+
+<div class="card mb-3">
+<img src="{{ url_for('static', filename=photos_url.photo_path) }}" class="card-img-top" alt="Img">
+<div class="card-body">
+<h5 class="card-title">Card title</h5>
+<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+</div>
+</div>
 
 {% endfor %}
+</div>
+
+
+
+
+
+<div>
+        {% if page > 1 %}
+            <a href="/photos_show/photos?page={{ page - 1 }}">上一页</a>
+        {% endif %}
+
+        {% if page < total_pages %}
+            <a href="/photos_show/photos?page={{ page + 1 }}">下一页</a>
+        {% endif %}
 </div>
 
 {% endblock %}

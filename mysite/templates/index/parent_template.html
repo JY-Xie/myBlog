@@ -123,6 +123,7 @@
         /*
          * Footer
          */
+
         .blog-footer {
           padding: 2.5rem 0;
           color: #727272;
@@ -170,6 +171,15 @@
             text-decoration: none;
             cursor: pointer;
         }
+    .image-text-box {
+          border: 1px solid black;
+            border-radius: 10px;
+          display: flex;
+          align-items: center;
+          padding: 10px;
+          max-width: fit-content;
+          margin: 25px;
+        }
     </style>
 
 
@@ -193,24 +203,24 @@
             </div>
           </div>
       <div class="col-4 text-center">
-        <a class="blog-header-logo text-dark" href="#">我的Blog</a>
+        <a class="blog-header-logo text-dark" href="{{ url_for('index_page.index_page') }}">我的Blog</a>
       </div>
       <div class="col-4 d-flex justify-content-end align-items-center">
-        <a class="link-secondary" href="#" aria-label="Search">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
-        </a>
-        <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
+{#        <a class="link-secondary" href="#" aria-label="Search">#}
+{#          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>#}
+{#        </a>#}
+        <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('auth.login') }}">LOGIN</a>
       </div>
     </div>
   </header>
 
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
-{#      <a class="p-2 link-secondary" href="{{ url_for('photos') }}">Photos</a>#}
+      <a class="p-2 link-secondary" href="{{ url_for('photos_show.show_photos') }}">Photos</a>
 {#      <a class="p-2 link-secondary" href="{{ url_for('articles') }}">Article</a>#}
-{#      <a class="p-2 link-secondary" href="#">Trends</a>#}
-{#      <a class="p-2 link-secondary" href="#">Research</a>#}
-{#      <a class="p-2 link-secondary" href="#">Codes</a>#}
+      <a class="p-2 link-secondary" href="#">Trends</a>
+      <a class="p-2 link-secondary" href="#">Research</a>
+      <a class="p-2 link-secondary" href="#">Codes</a>
 {#      <a class="p-2 link-secondary" href="{{ url_for('calendar') }}">Calendar</a>#}
     </nav>
   </div>

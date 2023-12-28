@@ -1,0 +1,20 @@
+{% extends './index/parent_template.html' %}
+{% block title %}blogs.{% endblock %}
+{% block content %}
+
+
+<h1>
+HELLO
+</h1>
+
+<div>
+{% for photos_url in photos_list %}
+    <img src="{{ url_for('static', filename=photos_url.photo_path) }}" class="img-fluid" alt="Image">
+    <div>{{ photos_url.photo_time }}</div>
+    <div>{{ photos_url.photo_location }}</div>
+    <div>{{ photos_url.photo_sentence }}</div>
+
+{% endfor %}
+</div>
+
+{% endblock %}

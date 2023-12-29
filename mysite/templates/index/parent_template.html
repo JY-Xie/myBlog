@@ -209,14 +209,22 @@
 {#        <a class="link-secondary" href="#" aria-label="Search">#}
 {#          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>#}
 {#        </a>#}
-        <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('auth.login') }}">LOGIN</a>
+            {% if g.user %}
+            <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('auth.logout') }}">LOGOUT</a>
+            {% else %}
+            <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('auth.login') }}">LOGIN</a>
+            {% endif %}
       </div>
     </div>
   </header>
 
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
+    {% if g.user %}
+        <a class="p-2 link-secondary" href="{{ url_for('auth_manage.manage_photo') }}">Photos</a>
+    {% else %}
       <a class="p-2 link-secondary" href="{{ url_for('photos_show.show_photos') }}">Photos</a>
+    {% endif %}
 {#      <a class="p-2 link-secondary" href="{{ url_for('articles') }}">Article</a>#}
       <a class="p-2 link-secondary" href="#">Trends</a>
       <a class="p-2 link-secondary" href="#">Research</a>

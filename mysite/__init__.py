@@ -28,8 +28,9 @@ def create_app(test_config=None):
     from .index import index_page
     app.register_blueprint(index_page.bp)
 
-    from .auth import auth
+    from .auth import auth, auth_manage
     app.register_blueprint(auth.bp)
+    app.register_blueprint(auth_manage.bp)
 
     # from . import db
     # db.init_app(app)

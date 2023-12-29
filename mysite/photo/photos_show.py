@@ -1,4 +1,3 @@
-import datetime
 from flask import Blueprint, flash, g, redirect, render_template, request, url_for, current_app
 from sqlalchemy import select, create_engine
 from sqlalchemy.orm import Session, scoped_session, sessionmaker
@@ -14,17 +13,8 @@ db_session = scoped_session(sessionmaker(autocommit=False,
 @bp.route('/photos')
 def show_photos():
     page = int(request.args.get('page', 1))
+    # 表示从HTTP请求的查询参数中获取名为page的值。如果查询参数中不存在名为page的参数，则默认值为1
     per_page = 10
-
-
-    # spongebob = Photo(
-    #     photo_path="photos/1(1).jpg",
-    #     photo_time=datetime.datetime.now(),
-    #     photo_location="chengdu2",
-    #     photo_sentence="testin1111111g"
-    # )
-    # db_session.add(spongebob)
-    # db_session.commit()
 
     db_list = db_session.query(Photo).all()
     total_length = len(db_list)

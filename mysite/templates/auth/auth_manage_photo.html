@@ -17,6 +17,12 @@ I want to share some photos with you!
 <h4 class="card-title">{{ photos_url.photo_location }}</h4>
 <p class="card-text">{{ photos_url.photo_sentence }}</p>
 <p class="card-text"><small class="text-muted">{{ photos_url.photo_time }}</small></p>
+
+<form action="{{ url_for('auth_manage.delete', id=photos_url.id) }}" method="post">
+    <p>{{ photos_url.id }}</p>
+    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+</form>
+
 </div>
 </div>
 
@@ -29,11 +35,11 @@ I want to share some photos with you!
 
 <div>
         {% if page > 1 %}
-            <a href="/photos_show/photos?page={{ page - 1 }}">上一页</a>
+            <a href="/auth_manage/?page={{ page - 1 }}">上一页</a>
         {% endif %}
 
         {% if page < total_pages %}
-            <a href="/photos_show/photos?page={{ page + 1 }}">下一页</a>
+            <a href="/auth_manage/?page={{ page + 1 }}">下一页</a>
         {% endif %}
 </div>
 

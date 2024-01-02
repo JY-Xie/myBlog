@@ -11,3 +11,8 @@ def index_page():
 
     return render_template('./index/index.html')
 
+
+@bp.route('/trends')
+def trends():
+    return render_template('./trend/trends.html')
+

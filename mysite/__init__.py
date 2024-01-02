@@ -32,6 +32,9 @@ def create_app(test_config=None):
     app.register_blueprint(auth.bp)
     app.register_blueprint(auth_manage.bp)
 
+    from .article import articles_show
+    app.register_blueprint(articles_show.bp)
+
     # from . import db
     # db.init_app(app)
     #

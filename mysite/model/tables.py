@@ -22,35 +22,24 @@ class Admin(Base):
         return f"User(id={self.id!r}, name={self.name!r}"
 
 
-# class Article(Base):
-#     __tablename__ = "article"
-#     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-#     article_head: Mapped[str] = mapped_column(String())
-#     article_body: Mapped[Text] = mapped_column(Text)
-#     article_time: Mapped[DateTime] = mapped_column(DateTime(), default=datetime.datetime.now())
-#     article_picture: Mapped[List["Picture"]] = relationship(back_populates="picture_foreign", cascade="all, delete-orphan")
-#
-#     def __repr__(self) -> str:
-#         return f"article(article_head={self.article_head!r})"
-#
-#
-# class Picture(Base):
-#     __tablename__ = "picture"
-#     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-#     picture_url: Mapped[str] = mapped_column(String())
-#     picture_foreign_id: Mapped[int] = mapped_column(ForeignKey("picture.id"))
-#     picture_time: Mapped[DateTime] = mapped_column(DateTime(), default=datetime.datetime.now)
-#     picture_foreign: Mapped["Article"] = relationship(back_populates="article_picture")
-#
-#     def __repr__(self) -> str:
-#         return f"picture(picture_url={self.picture_url!r})"
+class Article(Base):
+    __tablename__ = "article"
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    article_head: Mapped[str] = mapped_column(String())
+    article_body: Mapped[Text] = mapped_column(Text)
+    article_time: Mapped[DateTime] = mapped_column(DateTime(), default=datetime.datetime.now())
+
+    def __repr__(self) -> str:
+        return f"article(article_head={self.article_head!r})"
+
+
 
 
 class Photo(Base):
     __tablename__ = "photo"
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     photo_path: Mapped[str] = mapped_column(String())
-    photo_time: Mapped[DateTime] = mapped_column(DateTime(), default=datetime.datetime.now)
+    photo_time: Mapped[DateTime] = mapped_column(DateTime(), default=datetime.datetime.now())
     photo_location: Mapped[str] = mapped_column(String())
     photo_sentence: Mapped[str] = mapped_column(String())
 

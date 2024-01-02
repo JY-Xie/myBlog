@@ -11,7 +11,7 @@
 
 
 <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
-
+{% block style %}
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -186,6 +186,7 @@
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
     <!-- Custom styles for this template -->
+{% endblock %}
   </head>
 
 <body>
@@ -198,7 +199,7 @@
           <div id="myModal" class="modal">
               <div class="modal-content">
                 <span class="close">&times;</span>
-                <p>弹窗中的文本...</p>
+                <p>-> -> My email is siern.look@yandex.com.</p>
               </div>
             </div>
           </div>
@@ -224,10 +225,9 @@
         <a class="p-2 link-secondary" href="{{ url_for('auth_manage.manage_photo') }}">Photos</a>
     {% else %}
       <a class="p-2 link-secondary" href="{{ url_for('photos_show.show_photos') }}">Photos</a>
+      <a class="p-2 link-secondary" href="{{ url_for('articles_show.show_articles') }}">Article</a>
     {% endif %}
-{#      <a class="p-2 link-secondary" href="{{ url_for('articles') }}">Article</a>#}
-      <a class="p-2 link-secondary" href="#">Trends</a>
-      <a class="p-2 link-secondary" href="#">Research</a>
+      <a class="p-2 link-secondary" href="{{ url_for('index_page.trends') }}">Trends</a>
       <a class="p-2 link-secondary" href="#">Codes</a>
 {#      <a class="p-2 link-secondary" href="{{ url_for('calendar') }}">Calendar</a>#}
     </nav>
@@ -252,6 +252,7 @@
 </footer>
 
 <script src="{{ url_for('static', filename='js/nowTime_contactMe.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 
 </body>
 </html>

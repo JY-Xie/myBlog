@@ -26,6 +26,7 @@ class Article(Base):
     __tablename__ = "article"
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     article_head: Mapped[str] = mapped_column(String())
+    article_abstract: Mapped[Text] = mapped_column(Text)
     article_body: Mapped[Text] = mapped_column(Text)
     article_time: Mapped[DateTime] = mapped_column(DateTime(), default=datetime.datetime.now())
 

@@ -199,7 +199,8 @@
           <div id="myModal" class="modal">
               <div class="modal-content">
                 <span class="close">&times;</span>
-                <p>-> -> My email is siern.look@yandex.com.</p>
+                  <br>
+                <p> My email is siern.look@yandex.com.</p>
               </div>
             </div>
           </div>
@@ -225,10 +226,10 @@
         <a class="p-2 link-secondary" href="{{ url_for('auth_manage.manage_photo') }}">Photos</a>
     {% else %}
       <a class="p-2 link-secondary" href="{{ url_for('photos_show.show_photos') }}">Photos</a>
-      <a class="p-2 link-secondary" href="{{ url_for('articles_show.show_articles') }}">Article</a>
+      <a class="p-2 link-secondary" href="{{ url_for('articles_show.show_abstract') }}">Article</a>
     {% endif %}
       <a class="p-2 link-secondary" href="{{ url_for('index_page.trends') }}">Trends</a>
-      <a class="p-2 link-secondary" href="#">Codes</a>
+      <a class="p-2 link-secondary" href="{{ url_for('index_page.codes') }}">Codes</a>
 {#      <a class="p-2 link-secondary" href="{{ url_for('calendar') }}">Calendar</a>#}
     </nav>
   </div>
@@ -241,12 +242,12 @@
 
 
 <footer class="blog-footer">
-  <p>Blog template from <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+  <p>Blog template from <a href="https://getbootstrap.com/">Bootstrap</a> by @mdo.</p>
   <p>
     <a href="#top">Back to top</a>
   </p>
   <div class="container">
-    &copy; 2023 copy Current time: <span id="current-time"></span>
+    &copy; 2023 Current time: <span id="current-time"></span>
   </div>
 
 </footer>

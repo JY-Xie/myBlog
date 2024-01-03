@@ -3,32 +3,16 @@
 {% block content %}
 
 
-<div>
-{% for articles_html in articles_list %}
+
+
 <div class="card m-5">
   <div class="card-body">
-    <p class="card-text">{{ articles_html.article_body | safe }}</p>
+    <p class="card-text"><h1 class="text-center">{{ article.article_head }}</h1></p>
+    <p class="card-text m-5">{{ article.article_body | safe}}</p>
   </div>
 </div>
-
-</div>
-
-{% endfor %}
 </div>
 
 
-
-
-
-
-<div>
-        {% if page > 1 %}
-            <a href="/photos_show/photos?page={{ page - 1 }}">上一页</a>
-        {% endif %}
-
-        {% if page < total_pages %}
-            <a href="/photos_show/photos?page={{ page + 1 }}">下一页</a>
-        {% endif %}
-</div>
 
 {% endblock %}

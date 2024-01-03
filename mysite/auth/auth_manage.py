@@ -6,12 +6,12 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from werkzeug.security import check_password_hash, generate_password_hash
 from ..model.tables import Photo
 
-
 bp = Blueprint('auth_manage', __name__, url_prefix='/auth_manage')
 engine = create_engine("sqlite:///mysite/model/database.db", echo=True)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=engine))
+
 
 # @bp.route('/create', methods=('GET', 'POST'))
 # @login_required
@@ -58,8 +58,6 @@ def manage_photo():
         total_length=total_length)
 
 
-
-@bp.route('/<int:id>/delete', methods=('POST',))
 @login_required
 def delete(id):
     to_del = db_session.query(Photo).get(id)

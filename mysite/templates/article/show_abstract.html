@@ -1,0 +1,37 @@
+{% extends './index/parent_template.html' %}
+{% block title %}Abstract.{% endblock %}
+{% block content %}
+
+
+<div>
+{% for abstract_html in abstract_list %}
+<div class="card m-5">
+  <div class="card-body">
+    <p class="card-text">{{ abstract_html.article_head }}</p>
+    <p class="card-text">{{ abstract_html.article_abstract }}</p>
+{#    <a href="/articles_show/articles/{{ abstract_html.id }}">Read more</a>#}
+    <a href="{{ url_for('articles_show.show_articles', article_id=abstract_html.id) }}">Read more</a>
+  </div>
+</div>
+
+</div>
+
+{% endfor %}
+</div>
+
+
+
+
+
+
+<div>
+        {% if page > 1 %}
+            <a href="/photos_show/photos?page={{ page - 1 }}">上一页</a>
+        {% endif %}
+
+        {% if page < total_pages %}
+            <a href="/photos_show/photos?page={{ page + 1 }}">下一页</a>
+        {% endif %}
+</div>
+
+{% endblock %}

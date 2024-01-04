@@ -224,6 +224,7 @@
     <nav class="nav d-flex justify-content-between">
     {% if g.user %}
         <a class="p-2 link-secondary" href="{{ url_for('auth_manage.manage_photo') }}">Photos</a>
+        <a class="p-2 link-secondary" href="{{ url_for('auth_manage.manage_article') }}">Article</a>
     {% else %}
       <a class="p-2 link-secondary" href="{{ url_for('photos_show.show_photos') }}">Photos</a>
       <a class="p-2 link-secondary" href="{{ url_for('articles_show.show_abstract') }}">Article</a>

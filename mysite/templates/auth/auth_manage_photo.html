@@ -18,7 +18,7 @@ I want to share some photos with you!
 <p class="card-text">{{ photos_url.photo_sentence }}</p>
 <p class="card-text"><small class="text-muted">{{ photos_url.photo_time }}</small></p>
 
-<form action="{{ url_for('auth_manage.delete', id=photos_url.id) }}" method="post">
+<form action="{{ url_for('auth_manage.delete_photo', id=photos_url.id) }}" method="post">
     <p>{{ photos_url.id }}</p>
     <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
 </form>

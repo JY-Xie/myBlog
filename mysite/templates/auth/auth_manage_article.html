@@ -11,15 +11,13 @@
     <p class="card-text">{{ abstract_html.article_abstract }}</p>
 {#    <a href="/articles_show/articles/{{ abstract_html.id }}">Read more</a>#}
     <a href="{{ url_for('articles_show.show_articles', article_id=abstract_html.id) }}">Read more</a>
+      <form action="{{ url_for('auth_manage.delete_article', id=abstract_html.id) }}" method="post"><input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');"></form>
   </div>
 </div>
 
 
 {% endfor %}
 </div>
-
-
-
 
 
 

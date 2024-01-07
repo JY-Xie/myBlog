@@ -1,4 +1,6 @@
-import functools
+import os
+
+from werkzeug.utils import secure_filename
 from .auth import login_required
 from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for, abort
 from sqlalchemy import create_engine
@@ -65,6 +67,24 @@ def delete_photo(id):
     db_session.delete(to_del)
     db_session.commit()
     return redirect(url_for('auth_manage.manage_photo'))
+
+
+@login_required
+@bp.route('/photo_update/', methods=('POST', ))
+def update_photo():
+    image = request.files["image"]
+    if image:
+        filename = secure_filename(image.filename)
+        image.save(os.path.join(os.getcwd(), "mysite/static/photos" , filename))
+        return 'Image uploaded successfully'
+
+    else:
+        return 'No image uploaded'
+
+
+
+
+
 
 
 

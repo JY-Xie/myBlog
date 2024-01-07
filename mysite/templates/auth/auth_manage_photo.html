@@ -8,6 +8,13 @@ I want to share some photos with you!
 </h1>
 
 <div>
+<form method="post" action="{{ url_for('auth_manage.update_photo') }}" enctype="multipart/form-data">
+<input type="file" name="image">
+<button type="submit">button</button>
+</form>
+</div>
+
+<div>
 {% for photos_url in photos_list %}
 
 

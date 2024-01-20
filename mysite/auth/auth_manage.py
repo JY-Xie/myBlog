@@ -73,13 +73,29 @@ def delete_photo(id):
 @bp.route('/photo_update/', methods=('POST', ))
 def update_photo():
     image = request.files["image"]
+    photo_location = request.form["photo_location"]
+    photo_sentence = request.form["photo_sentence"]
     if image:
         filename = secure_filename(image.filename)
-        image.save(os.path.join(os.getcwd(), "mysite/static/photos" , filename))
-        return 'Image uploaded successfully'
+        photo_abs_path = os.path.join(os.getcwd(), "mysite/static/photos", filename)
+        image.save(photo_abs_path)
+        local_engine = create_engine("sqlite:///mysite/model/database.db", echo=True)
+        db_session = scoped_session(sessionmaker(autocommit=False,
+                                                 autoflush=False,
+                                                 bind=local_engine))
+        photo_relative_path = "photos/{}".format(filename)
+        photo_to_add = Photo(
+            photo_path=photo_relative_path,
+            photo_location=photo_location,
+            photo_sentence=photo_sentence
+        )
+
+        db_session.add(photo_to_add)
+        db_session.commit()
+        return redirect(url_for('auth_manage.manage_photo'))
 
     else:
-        return 'No image uploaded'
+        return redirect(url_for('auth_manage.manage_photo'))
 
 
 

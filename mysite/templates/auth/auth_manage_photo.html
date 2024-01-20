@@ -4,13 +4,29 @@
 
 <br>
 <h1>
-I want to share some photos with you!
+<div style="text-align: center;">管理我的图片</div>
 </h1>
 
 <div>
 <form method="post" action="{{ url_for('auth_manage.update_photo') }}" enctype="multipart/form-data">
-<input type="file" name="image">
-<button type="submit">button</button>
+<div class="mb-3 my-3">
+  <label for="formFile" class="form-label">提交新图文</label>
+  <input class="form-control" type="file" id="formFile" name="image">
+
+<div class="form-floating my-3">
+  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="photo_location"></textarea>
+  <label for="floatingTextarea">Location</label>
+</div>
+
+
+<div class="form-floating my-3">
+  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="photo_sentence"></textarea>
+  <label for="floatingTextarea2">Comments</label>
+</div>
+
+
+  <button class="btn btn-primary" type="submit">提交</button>
+</div>
 </form>
 </div>
 
@@ -26,7 +42,7 @@ I want to share some photos with you!
 <p class="card-text"><small class="text-muted">{{ photos_url.photo_time }}</small></p>
 
 <form action="{{ url_for('auth_manage.delete_photo', id=photos_url.id) }}" method="post">
-    <p>{{ photos_url.id }}</p>
+    <p>Pic id is {{ photos_url.id }}.</p>
     <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
 </form>
 
@@ -35,9 +51,6 @@ I want to share some photos with you!
 
 {% endfor %}
 </div>
-
-
-
 
 
 <div>

@@ -6,23 +6,23 @@
 上传新文章
 </h2>
 <div>
-    <form method="post" action="#" enctype="text/plain">
+    <form method="post" action="{{ url_for('auth_manage.create_article') }}" enctype="multipart/form-data">
     <div class="mb-3 my-3">
       <label for="formFile" class="form-label">输入原生HTML代码，问什么不用MarkDown，问就是懒！</label>
 
 
         <div class="form-floating my-3">
-          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="photo_location"></textarea>
+          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="article_title"></textarea>
           <label for="floatingTextarea">文章标题</label>
         </div>
 
         <div class="form-floating my-3">
-          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="photo_location"></textarea>
+          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="article_description"></textarea>
           <label for="floatingTextarea">文章简介</label>
         </div>
 
         <div class="form-floating my-3">
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 500px" name="photo_sentence"></textarea>
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 500px" name="article_content"></textarea>
             <label for="floatingTextarea2">在这里输入至少100字吧...</label>
         </div>
 
@@ -37,6 +37,15 @@
 {#        </div>#}
 
        <button class="btn btn-outline-danger" type="submit">提交</button>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+              {% for message in messages %}
+                {{ message }}
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
 
     </div>
     </form>

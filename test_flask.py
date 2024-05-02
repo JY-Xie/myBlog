@@ -2,14 +2,14 @@ import asyncio
 import aiohttp
 
 async def make_request(session):
-    url = 'http://127.0.0.1:5000/'
+    url = 'http://192.168.1.126:8888/'
     async with session.get(url) as response:
         return await response.text()
 
 async def send_requests():
     async with aiohttp.ClientSession() as session:
         tasks = []
-        for _ in range(10000):
+        for _ in range(100000):
             task = asyncio.ensure_future(make_request(session))
             tasks.append(task)
         await asyncio.gather(*tasks)

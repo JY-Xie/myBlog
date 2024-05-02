@@ -15,31 +15,6 @@ db_session = scoped_session(sessionmaker(autocommit=False,
                                          bind=engine))
 
 
-# @bp.route('/create', methods=('GET', 'POST'))
-# @login_required
-# def create():
-#     if request.method == 'POST':
-#         title = request.form['title']
-#         body = request.form['body']
-#         error = None
-#
-#         if not title:
-#             error = 'Title is required.'
-#
-#         if error is not None:
-#             flash(error)
-#         else:
-#             db = get_db()
-#             db.execute(
-#                 'INSERT INTO post (title, body, author_id)'
-#                 ' VALUES (?, ?, ?)',
-#                 (title, body, g.user['id'])
-#             )
-#             db.commit()
-#             return redirect(url_for('blog.index'))
-#
-#     return render_template('blog/create.html')
-
 @bp.route('/photo_manage')
 @login_required
 def manage_photo():
@@ -131,4 +106,35 @@ def delete_article(id):
     to_del = db_session.query(Article).get(id)
     db_session.delete(to_del)
     db_session.commit()
+    return redirect(url_for('auth_manage.manage_article'))
+
+
+@bp.route('/article_create', methods=('POST', ))
+@login_required
+def create_article():
+    if request.method == 'POST':
+        title = request.form['article_title']
+        description = request.form['article_description']
+        body = request.form['article_content']
+        error = None
+
+        if not title:
+            error = 'Title is required.'
+
+        if error is not None:
+            flash(error)
+        else:
+            local_engine = create_engine("sqlite:///mysite/model/database.db", echo=True)
+            db_session = scoped_session(sessionmaker(autocommit=False,
+                                                     autoflush=False,
+                                                     bind=local_engine))
+            article_to_add = Article(
+                article_head=title,
+                article_abstract=description,
+                article_body=body
+            )
+            db_session.add(article_to_add)
+            db_session.commit()
+
+
     return redirect(url_for('auth_manage.manage_article'))
